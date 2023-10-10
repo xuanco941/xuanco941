@@ -1,5 +1,5 @@
 
-# <img src="animated/fox.gif" height="30" /> Hey, I'm Do Van Xuan <img src="animated/hands.gif" height="30" />
+# <img src="animated/fox.gif" height="30" /> Hey, I'm Xuan <img src="animated/hands.gif" height="30" />
 <p align="left">
   <a href="https://stackoverflow.com/users/14002518">
     <img alt="Stack Exchange reputation" src="https://img.shields.io/stackexchange/stackoverflow/r/21890981?color=orange&label=reputation&logo=stackoverflow">
