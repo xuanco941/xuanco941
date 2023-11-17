@@ -37,12 +37,12 @@
 
 <img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 1 year experience working on winforms software connected to PLC in industry, 2 months working at a company specializing in retail.
 
-<ul>
+<!-- <ul>
 <li/>I like to use my skills to support my team by automating existing manual processes or introducing new ones.</li>
 <li/>I enjoy constantly improving my knowledge base by exploring new tools or collaborating with other developers.</li>
 <li/>I am a curiosity driven individual and a fast learner.</li>
 <li/>Applying my engineering skills to solve real life problems excites me.</li>
-</ul>
+</ul> -->
 
 ![Github Stats](https://github-readme-stats.vercel.app/api?username=xuanco941&show_icons=true&hide_border=false&theme=jolly&count_private=true&include_all_commits=true)
 ![Github Streak](http://github-readme-streak-stats.herokuapp.com?user=xuanco941&theme=jolly&date_format=j%20M%5B%20Y%5D)
