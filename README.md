@@ -35,7 +35,7 @@
 
 ## 🚀 About Me
 
-<img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 1.5 years experience working with C# and javascript.
+<img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 2 years experience working with C# and javascript.
 
 <!-- <ul>
 <li/>I like to use my skills to support my team by automating existing manual processes or introducing new ones.</li>
