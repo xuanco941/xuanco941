@@ -1,5 +1,5 @@
 
-# <img src="animated/fox.gif" height="30" /> Hey, I'm Xuan <img src="animated/hands.gif" height="30" />
+<!--# <img src="animated/fox.gif" height="30" /> Hey, I'm Xuan <img src="animated/hands.gif" height="30" /> -->
 <p align="left">
   <a href="https://stackoverflow.com/users/14002518">
     <img alt="Stack Exchange reputation" src="https://img.shields.io/stackexchange/stackoverflow/r/21890981?color=orange&label=reputation&logo=stackoverflow">
@@ -35,7 +35,7 @@
 
 ## 🚀 About Me
 
-<img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 2 years experience working with C# and javascript.
+<!-- <img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 2 years experience working with C# and javascript. -->
 
 <!-- <ul>
 <li/>I like to use my skills to support my team by automating existing manual processes or introducing new ones.</li>
