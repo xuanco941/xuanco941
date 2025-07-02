@@ -1,85 +1,104 @@
 
-<!--# <img src="animated/fox.gif" height="30" /> Hey, I'm Xuan <img src="animated/hands.gif" height="30" /> -->
-<p align="left">
-  <a href="https://stackoverflow.com/users/14002518">
-    <img alt="Stack Exchange reputation" src="https://img.shields.io/stackexchange/stackoverflow/r/21890981?color=orange&label=reputation&logo=stackoverflow">
-  </a>
-  <!-- <a href="https://www.hackerrank.com/xuanco941">
-    <img alt="HackerRank" src="https://img.shields.io/badge/hackerrank-15+-green?color=green&logo=hackerrank">
-  </a> -->
-  <a href="https://github.com/xuanco941?tab=followers">
-    <img alt="GitHub followers" src="https://img.shields.io/github/followers/xuanco941?color=yellow&logo=github">
-  </a>
-  <!-- <a href="https://medium.com/@xuanco941">
-    <img alt="Medium" src="https://img.shields.io/badge/medium-75+-green?color=green&logo=medium">
-  </a>
-  <a href="https://www.linkedin.com/in/xuanco941">
-    <img alt="Linkedin followers" src="https://img.shields.io/badge/followers-1.1K-blue?color=blue&logo=linkedin">
-  </a>
-  <a href="https://xuanco941.me">
-    <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio_Views-3000-violet?color=indigo&logo=readme">
-  </a> -->
-  <a href="https://www.instagram.com/vibes.js">
-    <img alt="Instagram Followers" src="https://img.shields.io/badge/followers-165-blue?color=violet&logo=instagram">
-  </a>
-    <a href="https://www.facebook.com/xuanco941">
-    <img alt="Facebook Followers" src="https://img.shields.io/badge/friends-600-blue?color=green&logo=facebook">
+
+
+<!--h1 without bottom border-->
+<div id="user-content-toc">
+  <ul align="center">
+    <summary><h1 style="display: inline-block">Hi 👋, I'm Xuan</h1></summary>
+  </ul>
+</div>
+
+
+<!--- snake -->
+<div style="width: 100%" align="center">
+  <img align="center" style="border-radius: 8px" width="200" src="./imgs/d0450fd88661c0189f473753134ed5ca.jpg"
+       alt="img" /></a>
+</div>
+
+
+<!--h2 without bottom border-->
+<div id="user-content-toc">
+  <ul align="center">
+    <summary><h2 style="display: inline-block">Fullstack Developer</h2></summary>
+  </ul>
+</div>
+
+
+<!--Intro start-->
+- 🔭 I’m currently working on **React, NextJs, C#, SQL Server**
+
+- 📫 Feel free to reach me out **xuanco941@gmail.com**
+<!--Intro end-->
+
+<!--horizontal divider(gradiant)-->
+<img style="width: 100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+<!--- stats & Trophy (start) -->
+<p align="center">
+  <!--- stats (start) -->
+<table align="center">
+<tr border="none">
+<td width="50%" align="center">
+  <img  align="center"  src="https://github-readme-stats.vercel.app/api?username=xuanco941&theme=dark&show_icons=true&count_private=true&include_all_commits=true" />
+  <br></br>
+  <img  title="🔥 Get streak stats for your profile at git.io/streak-stats" alt="Mark streak" src="https://github-readme-streak-stats.herokuapp.com/?user=xuanco941&theme=dark&hide_border=false" /> 
+</td>
+
+<td width="50%" align="center">
+
+  <img  align="center"  src="https://github-readme-stats.anuraghazra1.vercel.app/api/top-langs/?username=xuanco941&theme=dark&hide_border=false&no-bg=true&no-frame=true&langs_count=10&count_private=true&include_all_commits=true"/>
+  
+  </td>
+</tr>
+
+
+</table>
+<!--- stats (end) -->
+
+<!--- trophy (start) -->
+<div align=center>
+  <a href="https://github.com/ryo-ma/github-profile-trophy" title="Go to Source">
+      <img align="center" width=84% src="https://github-profile-trophy.vercel.app/?username=xuanco941&theme=radical&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
+    </a>
+</div>
+<!--- trophy (start) -->
+
+
+</p>        
+<!--- stats (end) -->
+
+<!--horizontal divider(gradiant)-->
+<img style="width: 100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
+
+<!--h1 without bottom border-->
+<div id="user-content-toc">
+  <ul align="center">
+    <summary><h2 style="display: inline-block">Technologies That I Know👨🏻‍💻</h2></summary>
+  </ul>
+</div>
+<!--tech stack icons-->
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,html,css,js,express,nextjs,figma,firebase,redis,github,java,materialui,mongodb,nodejs,postman,react,tailwind,ts,vscode,cs,bootstrap,visualstudio,vue,windows,sqlite,npm&perline=14" />
   </a>
 </p>
 
-## 🔗 Links
-[![github](https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/xuanco941)
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=Gmail&logoColor=white)](mailto:xuanco941@gmail.com)
-[![facebook](https://img.shields.io/badge/Facebook-2374e1?style=for-the-badge&logo=Facebook&logoColor=white)](https://facebook.com/xuanco941)
 
+<!--horizontal divider(gradiant)-->
+<img style="width: 100%" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## 🚀 About Me
+<!-- Connect with me -->
+<!--h2 without bottom border-->
+<div id="user-content-toc">
+  <ul align="center">
+    <summary><h2 style="display: inline-block">Connect With Me🤝</h2></summary>
+  </ul>
+</div>
 
-<!-- <img src="animated/light_1.gif" height="20px" />I majored in software engineering at Thuy Loi university, I have 2 years experience working with C# and javascript. -->
+<!--icons and links-->
+<p align="center">
+<a href="https://facebook.com/xuanco941/" target="blank"><img align="center" src="./imgs/social_13480297.png" alt="fb" height="55" width="55" /></a>
+<a href="https://instagram.com/vibes.js" target="blank"><img align="center" src="./imgs/instagram_4923005.png" alt="ins" height="50" width="50" /></a> 
+</p>
 
-<!-- <ul>
-<li/>I like to use my skills to support my team by automating existing manual processes or introducing new ones.</li>
-<li/>I enjoy constantly improving my knowledge base by exploring new tools or collaborating with other developers.</li>
-<li/>I am a curiosity driven individual and a fast learner.</li>
-<li/>Applying my engineering skills to solve real life problems excites me.</li>
-</ul> -->
-
-![GitHub Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=xuanco941&show_icons=true&hide_border=false&theme=jolly&count_private=true&include_all_commits=true&layout=compact)
-![Github Stats](https://github-readme-stats.vercel.app/api?username=xuanco941&show_icons=true&hide_border=false&theme=jolly&count_private=true&include_all_commits=true)
-![Github Streak](http://github-readme-streak-stats.herokuapp.com?user=xuanco941&theme=jolly&date_format=j%20M%5B%20Y%5D)
-![Github Trophy](https://github-profile-trophy.vercel.app/?username=xuanco941&theme=discord)
-
-## 🛠️ Skills
-
-### Languages
-
-![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![Typescript](https://img.shields.io/badge/TypeScript-323330?style=for-the-badge&logo=javascript&logoColor=blue)
-![SQL](https://img.shields.io/badge/sql-62B962?style=for-the-badge&logo=sql&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-035375?style=for-the-badge&logo=C%20sharp&logoColor=white)
-
-### Front-End Development
-
-![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![aframe](https://img.shields.io/badge/Aframe-EF2D5E?style=for-the-badge&logo=aframe&logoColor=white)
-![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-### Back-End Development
-
-![nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![expressjs](https://img.shields.io/badge/Express.js-20232A?style=for-the-badge&logo=express&logoColor=white)
-![asp.net](https://img.shields.io/badge/ASP.NET-3366cc?style=for-the-badge&logo=.NET&logoColor=white)
-
-
-### Desktop App Development
-
-![winforms](https://img.shields.io/badge/Winforms-0078D4?style=for-the-badge&logo=windows&logoColor=white)
-
-
-### Database
-
-![mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![mssql](https://img.shields.io/badge/MS_SQL-999966?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 
