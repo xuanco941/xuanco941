@@ -25,7 +25,7 @@
 
 
 <!--Intro start-->
-- 🔭 I’m currently working on **React, NextJs, C#, SQL Server**
+- 🔭 I’m currently working on **ReactJs, React Native, NextJs, Winforms, ASP.NET, SQL Server**
 
 - 📫 Feel free to reach me out **xuanco941@gmail.com**
 <!--Intro end-->
