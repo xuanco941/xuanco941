@@ -25,7 +25,7 @@
 
 
 <!--Intro start-->
-- 🔭 I’m currently working on **ReactJs, React Native, NextJs, Winforms, ASP.NET, SQL Server, MongoDB**
+- 🔭 I’m currently working on **ReactJs, React Native, NextJs, NodeJs, Winforms, ASP.NET, Firebase, SQL Server, MongoDB**
 
 - 📫 Feel free to reach me out **xuanco941@gmail.com**
 <!--Intro end-->
