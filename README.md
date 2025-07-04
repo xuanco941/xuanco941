@@ -25,7 +25,7 @@
 
 
 <!--Intro start-->
-- 🔭 I’m currently working on **ReactJs, React Native, NextJs, Winforms, ASP.NET, SQL Server**
+- 🔭 I’m currently working on **ReactJs, React Native, NextJs, Winforms, ASP.NET, SQL Server, MongoDB**
 
 - 📫 Feel free to reach me out **xuanco941@gmail.com**
 <!--Intro end-->
@@ -97,7 +97,7 @@
 
 <!--icons and links-->
 <p align="center">
-<a href="https://facebook.com/xuanco941/" target="blank"><img align="center" src="./imgs/social_13480297.png" alt="fb" height="55" width="55" /></a>
+<a href="https://facebook.com/xuanco941/" target="blank"><img align="center" src="./imgs/social_13480297.png" alt="fb" height="50" width="50" /></a>
 <a href="https://instagram.com/vibes.js" target="blank"><img align="center" src="./imgs/instagram_4923005.png" alt="ins" height="50" width="50" /></a> 
 </p>
 
