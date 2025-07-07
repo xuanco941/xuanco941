@@ -3,7 +3,7 @@
 
 <!--h1 without bottom border-->
 <div id="user-content-toc">
-  <ul align="center">
+  <ul align="center" style="list-style: none;">
     <summary><h1 style="display: inline-block">Hi 👋, I'm Xuan</h1></summary>
   </ul>
 </div>
@@ -18,7 +18,7 @@
 
 <!--h2 without bottom border-->
 <div id="user-content-toc">
-  <ul align="center">
+  <ul align="center" style="list-style: none;">
     <summary><h2 style="display: inline-block">Fullstack Developer</h2></summary>
   </ul>
 </div>
@@ -57,7 +57,7 @@
 <!--- stats (end) -->
 <!--- trophy (start) -->
 <div align=center>
-      <img align="center" width="84%" src="https://github-profile-trophy.vercel.app/?username=xuanco941&theme=radical&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
+      <img align="center" width="84%" src="https://github-profile-trophy.vercel.app/?username=xuanco941&theme=matrix&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
 </div>
 <!--- trophy (start) -->
 
@@ -70,7 +70,7 @@
 
 <!--h1 without bottom border-->
 <div id="user-content-toc">
-  <ul align="center">
+  <ul align="center" style="list-style: none;">
     <summary><h2 style="display: inline-block">Technologies That I Know👨🏻‍💻</h2></summary>
   </ul>
 </div>
@@ -88,7 +88,7 @@
 <!-- Connect with me -->
 <!--h2 without bottom border-->
 <div id="user-content-toc">
-  <ul align="center">
+  <ul align="center" style="list-style: none;">
     <summary><h2 style="display: inline-block">Connect With Me🤝</h2></summary>
   </ul>
 </div>
