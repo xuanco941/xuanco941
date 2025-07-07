@@ -12,7 +12,7 @@
 <!--- snake -->
 <div style="width: 100%" align="center">
   <img align="center" style="border-radius: 8px" width="200" src="./imgs/d0450fd88661c0189f473753134ed5ca.jpg"
-       alt="img" /></a>
+       alt="img" />
 </div>
 
 
