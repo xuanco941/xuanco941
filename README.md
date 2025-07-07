@@ -56,8 +56,8 @@
 
 <!--- stats (end) -->
 <!--- trophy (start) -->
-<div style="display: flex; justify-content: center" align=center>
-      <img align="center" width=84% src="https://github-profile-trophy.vercel.app/?username=xuanco941&theme=radical&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
+<div align=center>
+      <img align="center" width="84%" src="https://github-profile-trophy.vercel.app/?username=xuanco941&theme=radical&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
 </div>
 <!--- trophy (start) -->
 
