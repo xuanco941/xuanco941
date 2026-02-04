@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Experience from './components/Experience';
 import UI from './components/UI';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
   const [currentSection, setCurrentSection] = useState(0);
@@ -10,13 +11,15 @@ function App() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-[#030308] overflow-hidden">
-      {/* 3D World */}
-      <Experience onSectionChange={handleSectionChange} />
+    <LanguageProvider>
+      <div className="relative w-full h-screen bg-[#030308] overflow-hidden">
+        {/* 3D World */}
+        <Experience onSectionChange={handleSectionChange} />
 
-      {/* Heads-Up Display (HUD) */}
-      <UI currentSection={currentSection} />
-    </div>
+        {/* Heads-Up Display (HUD) */}
+        <UI currentSection={currentSection} />
+      </div>
+    </LanguageProvider>
   );
 }
 

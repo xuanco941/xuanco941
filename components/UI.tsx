@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Mail, MousePointer2, Facebook, Instagram, ChevronDown } from 'lucide-react';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 interface UIProps {
   currentSection?: number;
 }
 
-const sections = [
-  { id: 0, label: 'HOME', subtitle: 'Welcome' },
-  { id: 1, label: 'ABOUT ME', subtitle: 'Who I Am' },
-  { id: 2, label: 'TECH STACK', subtitle: 'Skills' },
-  { id: 3, label: 'PROJECTS', subtitle: 'My Work' },
-  { id: 4, label: 'CONTACT', subtitle: 'Get in Touch' },
-];
-
 const UI = ({ currentSection = 0 }: UIProps) => {
   const [localSection, setLocalSection] = useState(currentSection);
+  const { language, setLanguage, t } = useContext(LanguageContext);
 
   useEffect(() => {
     setLocalSection(currentSection);
   }, [currentSection]);
 
+  const sections = [
+    { id: 0, label: t.ui.nav.home, subtitle: t.ui.subtitles.home },
+    { id: 1, label: t.ui.nav.about, subtitle: t.ui.subtitles.about },
+    { id: 2, label: t.ui.nav.tech, subtitle: t.ui.subtitles.tech },
+    { id: 3, label: t.ui.nav.projects, subtitle: t.ui.subtitles.projects },
+    { id: 4, label: t.ui.nav.contact, subtitle: t.ui.subtitles.contact },
+  ];
+
   return (
     <div className="absolute inset-0 pointer-events-none z-50 flex flex-col justify-between p-4 sm:p-6 md:p-10">
 
       {/* Top Header HUD */}
-      <header className="flex justify-between items-start">
+      <header className="flex justify-between items-start relative">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,7 +89,7 @@ const UI = ({ currentSection = 0 }: UIProps) => {
           transition={{ delay: 0.3 }}
           className="lg:hidden flex flex-col items-end"
         >
-          <span className="text-xs font-mono text-gray-500">SECTION</span>
+          <span className="text-xs font-mono text-gray-500">{t.ui.section}</span>
           <span className="text-lg font-bold text-cyan-400">{`0${localSection + 1}`}</span>
           <span className="text-[10px] font-mono text-gray-400">{sections[localSection]?.subtitle}</span>
         </motion.div>
@@ -148,8 +150,26 @@ const UI = ({ currentSection = 0 }: UIProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-4 items-start"
         >
+          {/* Language Switcher */}
+          <div className="flex gap-1 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/5 pointer-events-auto">
+            <button
+              onClick={() => setLanguage('vi')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${language === 'vi' ? 'bg-cyan-400 text-black shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'text-gray-400 hover:text-white'
+                }`}
+            >
+              VI
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${language === 'en' ? 'bg-cyan-400 text-black shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'text-gray-400 hover:text-white'
+                }`}
+            >
+              EN
+            </button>
+          </div>
+
           {/* Scroll indicator - show only on first section */}
           <AnimatePresence>
             {localSection === 0 && (
@@ -165,7 +185,7 @@ const UI = ({ currentSection = 0 }: UIProps) => {
                 >
                   <ChevronDown size={18} />
                 </motion.div>
-                <span className="text-xs tracking-wider">SCROLL TO EXPLORE</span>
+                <span className="text-xs tracking-wider">{t.ui.scroll}</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -179,7 +199,7 @@ const UI = ({ currentSection = 0 }: UIProps) => {
                 exit={{ opacity: 0, y: -10 }}
                 className="flex flex-col gap-1"
               >
-                <span className="text-[10px] font-mono text-gray-500 tracking-wider">VIEWING</span>
+                <span className="text-[10px] font-mono text-gray-500 tracking-wider">{t.ui.viewing}</span>
                 <span className="text-sm font-mono text-cyan-400">{sections[localSection]?.subtitle}</span>
               </motion.div>
             )}

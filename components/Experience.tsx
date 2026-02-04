@@ -11,11 +11,14 @@ import {
 } from '@react-three/drei';
 import * as THREE from 'three';
 
+import { LanguageContext } from '../contexts/LanguageContext';
+
 // Context for section tracking
 const SectionContext = createContext({ currentSection: 0, setCurrentSection: (n: number) => { } });
+// Local translation definitions removed. Using global context.
 
 // Constants
-const SECTION_DISTANCE = 25;
+const SECTION_DISTANCE = 40;
 const SECTIONS = 5;
 
 // --- Enhanced 3D Components ---
@@ -101,7 +104,7 @@ const FloatingRings = ({ position }: { position: [number, number, number] }) => 
   );
 };
 
-const SectionTitle = ({ children, position, color = "white", subtitle, scale = 1, fontSize = 1.5 }: { children: string, position: [number, number, number], color?: string, subtitle?: string, scale?: number, fontSize?: number }) => {
+const SectionTitle = ({ children, position, color = "white", subtitle, scale = 1, fontSize = 1.5, anchorX = "center" }: { children: string, position: [number, number, number], color?: string, subtitle?: string, scale?: number, fontSize?: number, anchorX?: "center" | "left" | "right" }) => {
   const group = useRef<THREE.Group>(null);
 
   useFrame((state) => {
@@ -117,7 +120,7 @@ const SectionTitle = ({ children, position, color = "white", subtitle, scale = 1
     <group ref={group} position={position} scale={scale}>
       <Text
         color={color}
-        anchorX="center"
+        anchorX={anchorX}
         anchorY="middle"
         fontSize={fontSize}
         outlineWidth={0.02}
@@ -132,10 +135,10 @@ const SectionTitle = ({ children, position, color = "white", subtitle, scale = 1
         />
       </Text>
       {subtitle && (
-        <group position={[0, -subtitleOffset, 0]}>
+        <group position={[anchorX === 'left' ? 0 : anchorX === 'right' ? 0 : 0, -subtitleOffset, 0]}>
           <Text
             color="#00f3ff"
-            anchorX="center"
+            anchorX={anchorX}
             anchorY="middle"
             fontSize={subtitleFontSize}
             letterSpacing={0.2}
@@ -144,7 +147,7 @@ const SectionTitle = ({ children, position, color = "white", subtitle, scale = 1
             <meshBasicMaterial color="#00f3ff" transparent opacity={0.7} />
           </Text>
           {/* Decorative line under subtitle */}
-          <mesh position={[0, -subtitleFontSize * 0.8, 0]}>
+          <mesh position={[anchorX === 'left' ? fontSize * 0.9 : anchorX === 'right' ? -fontSize * 0.9 : 0, -subtitleFontSize * 0.8, 0]}>
             <planeGeometry args={[fontSize * 1.8, 0.015]} />
             <meshBasicMaterial color="#00f3ff" transparent opacity={0.4} />
           </mesh>
@@ -306,22 +309,22 @@ const SkillOrb = ({ position, color, label, scale = 1, glowColor }: { position: 
         </mesh>
       </Float>
 
-      {/* Label with background */}
-      <group position={[0, -1.6, 0]}>
+      {/* Label below orb */}
+      <group position={[0, -1.8, 0.5]}>
         <mesh>
           <planeGeometry args={[2.2, 0.5]} />
-          <meshBasicMaterial color="#000000" transparent opacity={0.6} />
+          <meshBasicMaterial color="#000000" transparent opacity={0.7} />
         </mesh>
         <Text
-          position={[0, 0, 0.01]}
-          fontSize={0.35}
+          position={[0, 0, 0.02]}
+          fontSize={0.32}
           color="white"
           anchorX="center"
           anchorY="middle"
-          letterSpacing={0.05}
+          letterSpacing={0.03}
         >
           {label}
-          <meshBasicMaterial color="white" />
+          <meshBasicMaterial color="white" toneMapped={false} depthTest={false} />
         </Text>
       </group>
     </group>
@@ -332,6 +335,7 @@ const ProjectCard = ({ position, title, description, color, scale = 1, index = 0
   const [hovered, setHover] = useState(false);
   const ref = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
+  const { t } = useContext(LanguageContext);
 
   useFrame((state) => {
     if (ref.current) {
@@ -454,7 +458,7 @@ const ProjectCard = ({ position, title, description, color, scale = 1, index = 0
           color={hovered ? color : "#666666"}
           letterSpacing={0.08}
         >
-          VIEW PROJECT →
+          {t.projects.view}
           <meshBasicMaterial color={hovered ? color : "#666666"} />
         </Text>
       </group>
@@ -465,11 +469,32 @@ const ProjectCard = ({ position, title, description, color, scale = 1, index = 0
 const SceneContent = () => {
   const scroll = useScroll();
   const { width } = useThree((state) => state.viewport);
-  // Responsive breakpoints
-  const isSmall = width < 5;
-  const isMobile = width < 7;
-  const isTablet = width < 10;
+
+  // Stabilized responsive breakpoints with hysteresis to prevent jumping
+  const prevWidth = useRef(width);
+  const stableBreakpoints = useRef({ isSmall: width < 5, isMobile: width < 7, isTablet: width < 10 });
+
+  // Only update breakpoints if width changed significantly (hysteresis of 0.3)
+  const hysteresis = 0.3;
+  if (Math.abs(width - prevWidth.current) > 0.1) {
+    const isSmall = stableBreakpoints.current.isSmall
+      ? width < 5 + hysteresis
+      : width < 5 - hysteresis;
+    const isMobile = stableBreakpoints.current.isMobile
+      ? width < 7 + hysteresis
+      : width < 7 - hysteresis;
+    const isTablet = stableBreakpoints.current.isTablet
+      ? width < 10 + hysteresis
+      : width < 10 - hysteresis;
+
+    stableBreakpoints.current = { isSmall, isMobile, isTablet };
+    prevWidth.current = width;
+  }
+
+  const { isSmall, isMobile, isTablet } = stableBreakpoints.current;
+
   const { setCurrentSection } = useContext(SectionContext);
+  const { t } = useContext(LanguageContext);
   const prevSection = useRef(0);
 
   useFrame((state, delta) => {
@@ -482,9 +507,9 @@ const SceneContent = () => {
     const currentSectionIndex = Math.min(Math.floor(sectionProgress + trackingBias), SECTIONS - 1);
 
     // Calculate target Z position
-    // Camera starts at z=8 to view Hero at z=0
-    // Then moves to z=8-25=-17 for About, z=8-50=-42 for Skills, etc.
-    const baseZ = 8;
+    // Camera starts at z=12 to view Hero at z=0
+    // Then moves to z=12-30=-18 for About, etc.
+    const baseZ = 12;
     const targetZ = baseZ - (sectionProgress * SECTION_DISTANCE);
 
     // Smoother camera movement
@@ -512,40 +537,129 @@ const SceneContent = () => {
   // Dynamic scale based on viewport
   const baseScale = isSmall ? 0.55 : isMobile ? 0.7 : isTablet ? 0.85 : 1;
 
-  // About Section
-  const aboutTextScale = isSmall ? 0.65 : isMobile ? 0.8 : 0.9;
-  const aboutCodeScale = isSmall ? 0.45 : isMobile ? 0.6 : 0.75;
-  const aboutTextPos: [number, number, number] = isMobile ? [0, -3.8, 0.5] : [-4, -0.5, 0.5];
-  const aboutCodePos: [number, number, number] = isMobile ? [0, 1.2, 0] : [3.5, 0, 0];
-  const aboutTitlePos: [number, number, number] = isMobile ? [0, 4.2, 0] : [-4, 3.5, 0];
+  // About Section - Compact layout for mobile
+  const aboutTextScale = isSmall ? 0.45 : isMobile ? 0.5 : 0.8;
+  const aboutCodeScale = isSmall ? 0.3 : isMobile ? 0.35 : 0.6;
+
+  // Mobile: Title top, Text below, Code at bottom - all compact
+  // Mobile: Title top, Text below, Code at bottom - tighter spacing
+  const aboutTitlePos: [number, number, number] = isMobile
+    ? [0, isSmall ? 3.5 : 3.2, 0]
+    : [-4, 3.5, 0];
+  const aboutTextPos: [number, number, number] = isMobile
+    ? [0, isSmall ? 1.0 : 0.8, 0.5]
+    : [-4, 1.2, 0.5]; // Desktop: Raised from -0.5 to 1.2
+  const aboutCodePos: [number, number, number] = isMobile
+    ? [0, isSmall ? -2.0 : -2.2, 0] // Mobile: Raised significantly to be closer to text
+    : [3.5, 0, 0];
 
   // Skills Section
-  const skillPositions: [number, number, number][] = isMobile ? [
-    [0, 2.2, 0],
-    [-1.5, 0.2, 0.5],
-    [1.5, 0.2, 0.5],
-    [-0.8, -1.8, 0],
-    [0.8, -1.8, 0]
-  ] : [
-    [-4, 0, 0],
-    [-1.8, 2, -0.5],
-    [1.8, 2, -0.5],
-    [-1.8, -2, 0.5],
-    [1.8, -2, 0.5]
+  const skillsList = [
+    { name: "Node.js", color: "#339933", glow: "#22c55e" },
+    { name: "NestJS", color: "#e0234e", glow: "#ef4444" },
+    { name: "Next.js", color: "#000000", glow: "#ffffff" },
+    { name: "React", color: "#61dafb", glow: "#61dafb" },
+    { name: "React Native", color: "#61dafb", glow: "#38bdf8" },
+    { name: "C#", color: "#512bd4", glow: "#8b5cf6" },
+    { name: "ASP.NET", color: "#512bd4", glow: "#a78bfa" },
+    { name: "Redis", color: "#dc382d", glow: "#ef4444" },
+    { name: "Firebase", color: "#ffca28", glow: "#fcd34d" },
+    { name: "SQL Server", color: "#cc2927", glow: "#ef4444" },
+    { name: "Git", color: "#f05032", glow: "#fb923c" }
   ];
-  const skillScale = isSmall ? 0.55 : isMobile ? 0.7 : 0.9;
 
-  // Projects Section
-  const projectScale = isSmall ? 0.65 : isMobile ? 0.8 : 0.95;
-  const projectPositions: [number, number, number][] = isMobile ? [
-    [0, 2.8, 0],
-    [0, -0.2, 0],
-    [0, -3.2, 0]
-  ] : [
-    [-4, 0.5, 0],
-    [0, -0.5, 1],
-    [4, 0.5, 0]
-  ];
+  // Skills Grid Layout - compact for mobile
+  const skillPositions = useMemo(() => {
+    const pos: [number, number, number][] = [];
+    const n = skillsList.length;
+
+    if (isSmall) {
+      // Very small mobile: 2 columns, very tight
+      const cols = 2;
+      const xSpacing = 2.2;
+      const ySpacing = 2.0;
+      for (let i = 0; i < n; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 2 - row * ySpacing;
+        pos.push([x, y, 0]);
+      }
+    } else if (isMobile) {
+      // Mobile: 2 columns, compact (Strictly 2 columns as requested)
+      const cols = 2;
+      const xSpacing = 3.2; // Slightly wider for readability
+      const ySpacing = 2.4;
+      for (let i = 0; i < n; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 3.0 - row * ySpacing; // Start slightly higher
+        pos.push([x, y, 0]);
+      }
+    } else {
+      // Desktop: 4 columns, 3 rows
+      const cols = 4;
+      const xSpacing = 4.0;
+      const ySpacing = 3.5;
+      for (let i = 0; i < n; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 2 - row * ySpacing;
+        pos.push([x, y, 0]);
+      }
+    }
+    return pos;
+  }, [isMobile, isSmall, skillsList.length]);
+
+  const skillScale = isSmall ? 0.32 : isMobile ? 0.45 : 0.55; // Increased mobile scale for better visibility with 2 cols
+
+  // Projects Section - Compact grid for mobile
+  const projectScale = isSmall ? 0.4 : isMobile ? 0.45 : 0.85;
+  const projectPositions = useMemo(() => {
+    const pos: [number, number, number][] = [];
+    const count = 8;
+
+    if (isSmall) {
+      // Very small mobile: 2 columns, compact
+      const cols = 2;
+      const xSpacing = 3.5;
+      const ySpacing = 2.0;
+      for (let i = 0; i < count; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 2 - row * ySpacing;
+        pos.push([x, y, 0]);
+      }
+    } else if (isMobile) {
+      // Mobile: 2-column grid, compact
+      const cols = 2;
+      const xSpacing = 4.0;
+      const ySpacing = 2.5;
+      for (let i = 0; i < count; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 1.5 - row * ySpacing;
+        pos.push([x, y, 0]);
+      }
+    } else {
+      // Desktop: 2 Rows, 4 Columns grid
+      const cols = 4;
+      const xSpacing = 4.8;
+      const ySpacing = 3.5;
+      for (let i = 0; i < count; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const x = (col - (cols - 1) / 2) * xSpacing;
+        const y = 1.5 - row * ySpacing;
+        pos.push([x, y, 0]);
+      }
+    }
+    return pos;
+  }, [isMobile, isSmall]);
 
   return (
     <>
@@ -556,17 +670,17 @@ const SceneContent = () => {
         <Float speed={1.5} rotationIntensity={0.08} floatIntensity={0.2}>
           {/* Main Title */}
           <Text
-            position={[0, isSmall ? 0.4 : isMobile ? 0.6 : 0.8, 0]}
-            fontSize={isSmall ? 0.8 : isMobile ? 1.4 : isTablet ? 1.8 : 2.2}
+            position={[0, isSmall ? 1.2 : isMobile ? 1.5 : 1.2, 0]}
+            fontSize={isSmall ? 0.45 : isMobile ? 0.7 : isTablet ? 1.2 : 1.5}
             letterSpacing={-0.02}
             color="white"
             anchorX="center"
             anchorY="middle"
-            maxWidth={width * 0.95}
+            maxWidth={width * 0.9}
             textAlign="center"
-            lineHeight={1}
+            lineHeight={1.1}
           >
-            HI, I'M XUAN
+            {t.hero.greeting}
             <meshStandardMaterial
               emissive="#00f3ff"
               emissiveIntensity={1}
@@ -576,29 +690,29 @@ const SceneContent = () => {
 
           {/* Role */}
           <Text
-            position={[0, isSmall ? -0.4 : isMobile ? -0.6 : -1, 0]}
-            fontSize={isSmall ? 0.22 : isMobile ? 0.35 : isTablet ? 0.45 : 0.5}
+            position={[0, isSmall ? -0.2 : isMobile ? -0.3 : -0.6, 0]}
+            fontSize={isSmall ? 0.18 : isMobile ? 0.28 : isTablet ? 0.45 : 0.5}
             color="#00f3ff"
             anchorX="center"
             anchorY="middle"
-            maxWidth={width * 0.9}
+            maxWidth={width * 0.85}
             textAlign="center"
             letterSpacing={0.1}
           >
-            FULLSTACK DEVELOPER
+            {t.hero.role}
             <meshBasicMaterial color="#00f3ff" transparent opacity={0.9} />
           </Text>
 
           {/* Subtitle tagline */}
           <Text
-            position={[0, isSmall ? -0.9 : isMobile ? -1.2 : -1.8, 0]}
-            fontSize={isSmall ? 0.12 : isMobile ? 0.18 : isTablet ? 0.22 : 0.25}
+            position={[0, isSmall ? -0.8 : isMobile ? -1.0 : -1.5, 0]}
+            fontSize={isSmall ? 0.11 : isMobile ? 0.16 : isTablet ? 0.22 : 0.25}
             color="#888888"
             anchorX="center"
             anchorY="middle"
-            maxWidth={width * 0.85}
+            maxWidth={width * 0.8}
           >
-            Building Digital Experiences
+            {t.hero.tagline}
             <meshBasicMaterial color="#888888" transparent opacity={0.7} />
           </Text>
         </Float>
@@ -623,37 +737,57 @@ const SceneContent = () => {
 
       {/* --- ABOUT SECTION --- */}
       <group position={[0, 0, -SECTION_DISTANCE]}>
+        {/* Title at top */}
         <SectionTitle
           position={aboutTitlePos}
-          subtitle="// WHO I AM"
-          fontSize={isSmall ? 0.8 : isMobile ? 1 : 1.4}
+          subtitle={t.about.subtitle}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
+          anchorX={isMobile ? "center" : "left"}
         >
-          ABOUT ME
+          {t.about.title}
         </SectionTitle>
 
-        <CodeBlock position={aboutCodePos} scale={aboutCodeScale} />
-
+        {/* Text content - Personal details + Description - positioned after title */}
         <group position={aboutTextPos} scale={[aboutTextScale, aboutTextScale, aboutTextScale]}>
-          <mesh position={[isMobile ? 0 : 2.75, 1.2, -0.05]}>
-            <planeGeometry args={[isSmall ? 4 : isMobile ? 5 : 5.8, 3]} />
-            <meshBasicMaterial color="#000000" transparent opacity={0.3} />
+          {/* Background panel */}
+          <mesh position={[isMobile ? 0 : 2.75, isMobile ? 0 : -1.0, -0.05]}>
+            <planeGeometry args={[isSmall ? 5.5 : isMobile ? 6.5 : 5.8, isSmall ? 5 : isMobile ? 5.5 : 5.5]} />
+            <meshBasicMaterial color="#000000" transparent opacity={0.35} />
           </mesh>
+
+          {/* Details first (hometown, residence, work) - AT TOP */}
           <Text
-            position={[0, 0, 0]}
-            maxWidth={isSmall ? 3.8 : isMobile ? 4.5 : 5.5}
-            fontSize={isSmall ? 0.22 : isMobile ? 0.26 : 0.3}
+            position={[0, isMobile ? 1.0 : 0.5, 0]}
+            maxWidth={isSmall ? 4.5 : isMobile ? 5.5 : 5.5}
+            fontSize={isSmall ? 0.28 : isMobile ? 0.3 : 0.28}
+            lineHeight={1.8}
+            textAlign={isMobile ? "center" : "left"}
+            anchorX={isMobile ? "center" : "left"}
+            anchorY="top"
+            color="#00f3ff"
+          >
+            {t.about.details}
+            <meshBasicMaterial color="#00f3ff" />
+          </Text>
+
+          {/* Description text - BELOW details - Closer on mobile */}
+          <Text
+            position={[0, isMobile ? -0.8 : -2.0, 0]}
+            maxWidth={isSmall ? 4.5 : isMobile ? 5.5 : 5.5}
+            fontSize={isSmall ? 0.22 : isMobile ? 0.24 : 0.24}
             lineHeight={1.6}
             textAlign={isMobile ? "center" : "left"}
             anchorX={isMobile ? "center" : "left"}
             anchorY="top"
             color="#d0d0d0"
           >
-            I focus on building scalable full-stack applications using modern technologies. My stack includes React, Node.js, ASP.NET, and cloud infrastructure.
-            {'\n\n'}
-            Creating elegant solutions for complex problems is my passion.
+            {t.about.description}
             <meshBasicMaterial color="#d0d0d0" />
           </Text>
         </group>
+
+        {/* Code Block - AT BOTTOM */}
+        <CodeBlock position={aboutCodePos} scale={aboutCodeScale} />
 
         <Sparkles count={30} scale={8} size={2} speed={0.5} opacity={0.3} color="#00f3ff" position={[0, 0, -2]} />
       </group>
@@ -661,18 +795,23 @@ const SceneContent = () => {
       {/* --- SKILLS SECTION --- */}
       <group position={[0, 0, -SECTION_DISTANCE * 2]}>
         <SectionTitle
-          position={[0, isMobile ? 4.5 : 4.2, 0]}
-          subtitle="// MY SKILLS"
-          fontSize={isSmall ? 0.8 : isMobile ? 1 : 1.4}
+          position={[0, isSmall ? 4 : isMobile ? 4.2 : 5.5, 0]}
+          subtitle={t.skills.subtitle}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
         >
-          TECH STACK
+          {t.skills.title}
         </SectionTitle>
 
-        <SkillOrb position={skillPositions[0]} color="#61dafb" glowColor="#61dafb" label="React" scale={skillScale} />
-        <SkillOrb position={skillPositions[1]} color="#512bd4" glowColor="#8b5cf6" label=".NET / C#" scale={skillScale} />
-        <SkillOrb position={skillPositions[2]} color="#339933" glowColor="#22c55e" label="Node.js" scale={skillScale} />
-        <SkillOrb position={skillPositions[3]} color="#3178c6" glowColor="#60a5fa" label="TypeScript" scale={skillScale} />
-        <SkillOrb position={skillPositions[4]} color="#e38c00" glowColor="#f59e0b" label="SQL" scale={skillScale} />
+        {skillsList.map((skill, index) => (
+          <SkillOrb
+            key={skill.name}
+            position={skillPositions[index]}
+            color={skill.color}
+            glowColor={skill.glow}
+            label={skill.name}
+            scale={skillScale}
+          />
+        ))}
 
         {/* Connecting lines visual */}
         {!isMobile && (
@@ -688,41 +827,28 @@ const SceneContent = () => {
       {/* --- PROJECTS SECTION --- */}
       <group position={[0, 0, -SECTION_DISTANCE * 3]}>
         <SectionTitle
-          position={[0, isMobile ? 5 : 4, 0]}
-          subtitle="// MY WORK"
-          fontSize={isSmall ? 0.8 : isMobile ? 1 : 1.4}
+          position={[0, isSmall ? 4.5 : isMobile ? 4.2 : 5, 0]}
+          subtitle={t.projects.subtitle}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
         >
-          PROJECTS
+          {t.projects.title}
         </SectionTitle>
 
-        <ProjectCard
-          position={projectPositions[0]}
-          title="Neural Analytics"
-          description="Real-time data visualization dashboard with WebSockets and interactive charts."
-          color="#00f3ff"
-          scale={projectScale}
-          index={0}
-        />
-        <ProjectCard
-          position={projectPositions[1]}
-          title="Nexus Commerce"
-          description="Headless e-commerce architecture utilizing Next.js and Stripe integration."
-          color="#bd00ff"
-          scale={projectScale}
-          index={1}
-        />
-        <ProjectCard
-          position={projectPositions[2]}
-          title="Synth AI"
-          description="LLM-powered code assistant extension for Visual Studio Code."
-          color="#ff0055"
-          scale={projectScale}
-          index={2}
-        />
+        {t.projects.items.map((item, index) => (
+          <ProjectCard
+            key={index}
+            position={projectPositions[index]}
+            title={item.title}
+            description={item.description}
+            color={["#00f3ff", "#bd00ff", "#ff0055", "#00ff88", "#ffaa00", "#ffffff", "#4287f5", "#f542e0"][index] || "#ffffff"}
+            scale={projectScale}
+            index={index}
+          />
+        ))}
       </group>
 
       {/* --- CONTACT SECTION --- */}
-      <group position={[0, isMobile ? 1.5 : 2, -SECTION_DISTANCE * 4]}>
+      <group position={[0, isMobile ? (isSmall ? 3 : 2) : 2, -SECTION_DISTANCE * 4]}>
         <FloatingRings position={[0, 0, -3]} />
 
         {/* Main Title */}
@@ -736,7 +862,7 @@ const SceneContent = () => {
             textAlign="center"
             letterSpacing={0.08}
           >
-            LET'S CONNECT
+            {t.contact.title}
             <meshStandardMaterial
               emissive="#bd00ff"
               emissiveIntensity={1}
@@ -753,7 +879,7 @@ const SceneContent = () => {
           anchorX="center"
           anchorY="middle"
         >
-          Ready to bring your ideas to life
+          {t.contact.subtitle}
           <meshBasicMaterial color="#888888" />
         </Text>
 
@@ -774,7 +900,7 @@ const SceneContent = () => {
             anchorX="center"
             anchorY="middle"
           >
-            EMAIL
+            {t.contact.email}
             <meshBasicMaterial color="#666666" />
           </Text>
           <Text
@@ -900,7 +1026,7 @@ const SceneContent = () => {
               color="#666666"
               anchorX="center"
             >
-              Years Experience
+              {t.contact.stats.exp}
               <meshBasicMaterial color="#666666" />
             </Text>
           </group>
@@ -920,7 +1046,7 @@ const SceneContent = () => {
               color="#666666"
               anchorX="center"
             >
-              Projects Completed
+              {t.contact.stats.proj}
               <meshBasicMaterial color="#666666" />
             </Text>
           </group>
@@ -940,7 +1066,7 @@ const SceneContent = () => {
               color="#666666"
               anchorX="center"
             >
-              Client Satisfaction
+              {t.contact.stats.sat}
               <meshBasicMaterial color="#666666" />
             </Text>
           </group>
@@ -956,7 +1082,7 @@ const SceneContent = () => {
           textAlign="center"
           maxWidth={isMobile ? 4 : 6}
         >
-          Available for freelance projects and full-time opportunities.{"\n"}Let's build something amazing together!
+          {t.contact.cta}
           <meshBasicMaterial color="#888888" />
         </Text>
 
@@ -980,41 +1106,43 @@ const Experience = ({ onSectionChange }: ExperienceProps) => {
 
   return (
     <SectionContext.Provider value={{ currentSection, setCurrentSection: handleSectionChange }}>
-      <Canvas
-        dpr={[1, 2]}
-        gl={{
-          antialias: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.2
-        }}
-        camera={{ fov: 50, near: 0.1, far: 200, position: [0, 0, 8] }}
-      >
-        <color attach="background" args={['#030308']} />
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <Canvas
+          dpr={[1, 2]}
+          gl={{
+            antialias: true,
+            toneMapping: THREE.ACESFilmicToneMapping,
+            toneMappingExposure: 1.2
+          }}
+          camera={{ fov: 50, near: 0.1, far: 200, position: [0, 0, 12] }}
+        >
+          <color attach="background" args={['#030308']} />
 
-        <Suspense fallback={null}>
-          <ScrollControls pages={6} damping={0.2}>
-            <SceneContent />
-          </ScrollControls>
+          <Suspense fallback={null}>
+            <ScrollControls pages={6} damping={0.3}>
+              <SceneContent />
+            </ScrollControls>
 
-          <Stars
-            radius={100}
-            depth={80}
-            count={2500}
-            factor={4}
-            saturation={0.2}
-            fade
-            speed={0.5}
-          />
-          <ParticleField />
+            <Stars
+              radius={100}
+              depth={80}
+              count={2500}
+              factor={4}
+              saturation={0.2}
+              fade
+              speed={0.5}
+            />
+            <ParticleField />
 
-          <fog attach="fog" args={['#030308', 10, 60]} />
-        </Suspense>
+            <fog attach="fog" args={['#030308', 10, 60]} />
+          </Suspense>
 
-        <ambientLight intensity={0.3} />
-        <pointLight position={[15, 15, 15]} intensity={1.5} color="#00f3ff" distance={50} />
-        <pointLight position={[-15, -15, -15]} intensity={1.2} color="#bd00ff" distance={50} />
-        <pointLight position={[0, 10, -20]} intensity={0.8} color="#ff0055" distance={40} />
-      </Canvas>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[15, 15, 15]} intensity={1.5} color="#00f3ff" distance={50} />
+          <pointLight position={[-15, -15, -15]} intensity={1.2} color="#bd00ff" distance={50} />
+          <pointLight position={[0, 10, -20]} intensity={0.8} color="#ff0055" distance={40} />
+        </Canvas>
+      </div>
     </SectionContext.Provider>
   );
 };
