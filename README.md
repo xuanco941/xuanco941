@@ -5,7 +5,7 @@
   <h3 align="center">🚀 Fullstack Developer</h3>
 
   <!-- 3D Floating Avatar -->
-<img src="./public/nai.jpg" width="200" style="border-radius: 50%; box-shadow: 0 0 50px rgba(50, 180, 212, 0.8); animation: float 3s ease-in-out infinite;"/>
+<img src="./public/nai.png" width="200" style="border-radius: 50%; box-shadow: 0 0 50px rgba(50, 180, 212, 0.8); animation: float 3s ease-in-out infinite;"/>
 
   <!-- Animated Typing Effect -->
   <br/>
