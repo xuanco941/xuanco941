@@ -468,7 +468,14 @@ const ProjectCard = ({ position, title, description, color, scale = 1, index = 0
 
 const SceneContent = () => {
   const scroll = useScroll();
-  const { width } = useThree((state) => state.viewport);
+  // Calculate width at the content distance (12 units) to ensure consistent responsiveness
+  const width = useThree((state) => {
+    const cam = state.camera as THREE.PerspectiveCamera;
+    const distance = 12; // Distance from camera to content planes
+    const vFov = (cam.fov * Math.PI) / 180;
+    const height = 2 * Math.tan(vFov / 2) * distance;
+    return height * state.viewport.aspect;
+  });
 
   // Stabilized responsive breakpoints with hysteresis to prevent jumping
   const prevWidth = useRef(width);
@@ -586,15 +593,15 @@ const SceneContent = () => {
         pos.push([x, y, 0]);
       }
     } else if (isMobile) {
-      // Mobile: 2 columns, compact (Strictly 2 columns as requested)
-      const cols = 2;
-      const xSpacing = 3.2; // Slightly wider for readability
-      const ySpacing = 2.4;
+      // Mobile: 3 columns, compact
+      const cols = 3;
+      const xSpacing = 2.2; // Tighter spacing for 3 cols
+      const ySpacing = 2.2;
       for (let i = 0; i < n; i++) {
         const col = i % cols;
         const row = Math.floor(i / cols);
         const x = (col - (cols - 1) / 2) * xSpacing;
-        const y = 3.0 - row * ySpacing; // Start slightly higher
+        const y = 3.8 - row * ySpacing; // Moved up significantly (was 3.0)
         pos.push([x, y, 0]);
       }
     } else {
@@ -613,7 +620,7 @@ const SceneContent = () => {
     return pos;
   }, [isMobile, isSmall, skillsList.length]);
 
-  const skillScale = isSmall ? 0.32 : isMobile ? 0.45 : 0.55; // Increased mobile scale for better visibility with 2 cols
+  const skillScale = isSmall ? 0.3 : isMobile ? 0.35 : 0.55; // Decreased mobile scale for 3 cols
 
   // Projects Section - Compact grid for mobile
   const projectScale = isSmall ? 0.4 : isMobile ? 0.45 : 0.85;
@@ -642,7 +649,7 @@ const SceneContent = () => {
         const col = i % cols;
         const row = Math.floor(i / cols);
         const x = (col - (cols - 1) / 2) * xSpacing;
-        const y = 1.5 - row * ySpacing;
+        const y = 3.0 - row * ySpacing;
         pos.push([x, y, 0]);
       }
     } else {
@@ -671,7 +678,7 @@ const SceneContent = () => {
           {/* Main Title */}
           <Text
             position={[0, isSmall ? 1.2 : isMobile ? 1.5 : 1.2, 0]}
-            fontSize={isSmall ? 0.45 : isMobile ? 0.7 : isTablet ? 1.2 : 1.5}
+            fontSize={isSmall ? 0.45 : isMobile ? 0.65 : isTablet ? 1.2 : 1.5}
             letterSpacing={-0.02}
             color="white"
             anchorX="center"
@@ -741,7 +748,7 @@ const SceneContent = () => {
         <SectionTitle
           position={aboutTitlePos}
           subtitle={t.about.subtitle}
-          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.65 : 1.4}
           anchorX={isMobile ? "center" : "left"}
         >
           {t.about.title}
@@ -757,7 +764,7 @@ const SceneContent = () => {
 
           {/* Details first (hometown, residence, work) - AT TOP */}
           <Text
-            position={[0, isMobile ? 1.0 : 0.5, 0]}
+            position={[0, isMobile ? 1.2 : 0.5, 0]}
             maxWidth={isSmall ? 4.5 : isMobile ? 5.5 : 5.5}
             fontSize={isSmall ? 0.28 : isMobile ? 0.3 : 0.28}
             lineHeight={1.8}
@@ -772,7 +779,7 @@ const SceneContent = () => {
 
           {/* Description text - BELOW details - Closer on mobile */}
           <Text
-            position={[0, isMobile ? -0.8 : -2.0, 0]}
+            position={[0, isMobile ? -1.4 : -2.0, 0]}
             maxWidth={isSmall ? 4.5 : isMobile ? 5.5 : 5.5}
             fontSize={isSmall ? 0.22 : isMobile ? 0.24 : 0.24}
             lineHeight={1.6}
@@ -795,9 +802,9 @@ const SceneContent = () => {
       {/* --- SKILLS SECTION --- */}
       <group position={[0, 0, -SECTION_DISTANCE * 2]}>
         <SectionTitle
-          position={[0, isSmall ? 4 : isMobile ? 4.2 : 5.5, 0]}
+          position={[0, isSmall ? 4 : isMobile ? 5.3 : 5.5, 0]}
           subtitle={t.skills.subtitle}
-          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.65 : 1.4}
         >
           {t.skills.title}
         </SectionTitle>
@@ -827,9 +834,9 @@ const SceneContent = () => {
       {/* --- PROJECTS SECTION --- */}
       <group position={[0, 0, -SECTION_DISTANCE * 3]}>
         <SectionTitle
-          position={[0, isSmall ? 4.5 : isMobile ? 4.2 : 5, 0]}
+          position={[0, isSmall ? 4.5 : isMobile ? 4.8 : 5, 0]}
           subtitle={t.projects.subtitle}
-          fontSize={isSmall ? 0.6 : isMobile ? 0.8 : 1.4}
+          fontSize={isSmall ? 0.6 : isMobile ? 0.65 : 1.4}
         >
           {t.projects.title}
         </SectionTitle>
@@ -854,11 +861,11 @@ const SceneContent = () => {
         {/* Main Title */}
         <Float speed={1.5} rotationIntensity={0.08} floatIntensity={0.4}>
           <Text
-            fontSize={isSmall ? 1 : isMobile ? 1.3 : 2}
+            fontSize={isSmall ? 0.6 : isMobile ? 0.65 : 2}
             color="white"
             anchorX="center"
             anchorY="middle"
-            maxWidth={width * 0.9}
+            maxWidth={width * 1.5}
             textAlign="center"
             letterSpacing={0.08}
           >
@@ -884,7 +891,7 @@ const SceneContent = () => {
         </Text>
 
         {/* Email Box */}
-        <group position={[0, isSmall ? -2.2 : isMobile ? -2.8 : -3.2, 0]}>
+        <group position={[0, isSmall ? -2.0 : isMobile ? -2.0 : -3.2, 0]}>
           <mesh>
             <planeGeometry args={[isSmall ? 3.5 : isMobile ? 4.5 : 6, isSmall ? 0.7 : 0.9]} />
             <meshBasicMaterial color="#0a0a15" transparent opacity={0.8} />
@@ -917,7 +924,7 @@ const SceneContent = () => {
         </group>
 
         {/* Social Links Row */}
-        <group position={[0, isMobile ? -4.2 : -4.8, 0]}>
+        <group position={[0, isMobile ? -3.4 : -4.8, 0]}>
           {/* GitHub */}
           <group position={[isMobile ? -1.5 : -2.5, 0, 0]}>
             <mesh>
@@ -1010,8 +1017,8 @@ const SceneContent = () => {
         </group>
 
         {/* Stats Row */}
-        <group position={[0, isMobile ? -5.8 : -6.5, 0]}>
-          <group position={[isMobile ? -1.8 : -3, 0, 0]}>
+        <group position={[0, isMobile ? -4.8 : -6.5, 0]}>
+          <group position={[isMobile ? -1.5 : -2, isMobile ? 0 : 0, 0]}>
             <Text
               fontSize={isMobile ? 0.5 : 0.7}
               color="#00f3ff"
@@ -1051,7 +1058,7 @@ const SceneContent = () => {
             </Text>
           </group>
 
-          <group position={[isMobile ? 1.8 : 3, 0, 0]}>
+          <group position={[isMobile ? 1.5 : 2, isMobile ? 0 : 0, 0]}>
             <Text
               fontSize={isMobile ? 0.5 : 0.7}
               color="#ff0055"
@@ -1074,7 +1081,7 @@ const SceneContent = () => {
 
         {/* CTA Text */}
         <Text
-          position={[0, isMobile ? -7.2 : -8, 0]}
+          position={[0, isMobile ? -6.0 : -8, 0]}
           fontSize={isMobile ? 0.18 : 0.22}
           color="#888888"
           anchorX="center"

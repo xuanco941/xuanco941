@@ -12,7 +12,7 @@ function App() {
 
   return (
     <LanguageProvider>
-      <div className="relative w-full h-screen bg-[#030308] overflow-hidden">
+      <div className="relative w-full h-[100dvh] bg-[#030308] overflow-hidden">
         {/* 3D World */}
         <Experience onSectionChange={handleSectionChange} />
 

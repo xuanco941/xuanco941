@@ -24,7 +24,7 @@ const UI = ({ currentSection = 0 }: UIProps) => {
   ];
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-50 flex flex-col justify-between p-4 sm:p-6 md:p-10">
+    <div className="absolute inset-0 pointer-events-none z-50 flex flex-col justify-between p-4 sm:p-6 md:p-10 pb-[max(1rem,env(safe-area-inset-bottom))]">
 
       {/* Top Header HUD */}
       <header className="flex justify-between items-start relative">
