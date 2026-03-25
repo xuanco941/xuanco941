@@ -1,20 +1,26 @@
 (function() {
-    const REDIRECT_URL = 'https://thietkechip.vn';
-    const COOLDOWN_TIME = 5 * 60 * 60 * 1000; // 5 giờ tính bằng miliseconds
+    // Danh sách các link ngẫu nhiên bạn muốn hướng tới
+    const RANDOM_LINKS = [
+        'https://thietkechip.vn/',
+        'https://thietkechip.vn/bai-viet/',
+        'https://thietkechip.vn/danh-muc/tin-tuc-cong-nghe',
+        'https://thietkechip.vn/danh-muc/ai-machine-learning'
+    ];
+
+    const COOLDOWN_TIME = 5 * 60 * 60 * 1000; // 5 giờ
     const STORAGE_KEY = 'last_redirect_time';
 
     document.addEventListener('click', function() {
         const now = new Date().getTime();
         const lastRedirect = localStorage.getItem(STORAGE_KEY);
 
-        // Kiểm tra nếu chưa bao giờ click hoặc đã quá 5 giờ kể từ lần cuối
         if (!lastRedirect || (now - lastRedirect) > COOLDOWN_TIME) {
-            
-            // Lưu mốc thời gian hiện tại
             localStorage.setItem(STORAGE_KEY, now);
             
-            // Mở trang web mới
-            window.open(REDIRECT_URL, '_blank');
+            // Chọn ngẫu nhiên 1 link từ danh sách phía trên
+            const randomUrl = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
+            
+            window.open(randomUrl, '_blank');
         }
     });
 })();
