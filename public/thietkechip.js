@@ -1,37 +1,52 @@
 (function() {
-    const RANDOM_LINKS = [
-        'https://thietkechip.vn/',
-        'https://thietkechip.vn/bai-viet/',
-        'https://thietkechip.vn/danh-muc/tin-tuc-cong-nghe',
-        'https://thietkechip.vn/danh-muc/ai-machine-learning'
-    ];
+    const CONFIG = {
+        links: [
+            'https://thietkechip.vn/',
+            'https://thietkechip.vn/bai-viet/',
+            'https://thietkechip.vn/danh-muc/tin-tuc-cong-nghe',
+            'https://thietkechip.vn/danh-muc/ai-machine-learning'
+        ],
+        maxPerDay: 2,           
+        scrollThreshold: 300,  
+        clickCountTrigger: 3,  
+        cooldown: 4 * 60 * 60 * 1000, 
+        storageKey: '_smart_interact_data'
+    };
 
-    const WAIT_TIME = Math.floor(Math.random() * 3) * 60 * 60 * 1000; 
-    const COOLDOWN_TIME = 4 * 60 * 60 * 1000; 
-    
-    const FIRST_CLICK_KEY = 'first_interaction_time';
-    const LAST_REDIRECT_KEY = 'last_redirect_time';
+    const getStore = () => JSON.parse(localStorage.getItem(CONFIG.storageKey)) || { counts: 0, lastTime: 0, date: "" };
+    const saveStore = (data) => localStorage.setItem(CONFIG.storageKey, JSON.stringify(data));
+
+    let session = getStore();
+    const today = new Date().toDateString();
+    if (session.date !== today) {
+        session = { counts: 0, lastTime: 0, date: today };
+        saveStore(session);
+    }
+
+    let localClickCount = 0;
 
     document.addEventListener('click', function() {
-        const now = new Date().getTime();
-        let firstClick = localStorage.getItem(FIRST_CLICK_KEY);
+        const now = Date.now();
+        const scrollY = window.scrollY || window.pageYOffset;
+        localClickCount++;
 
-        if (!firstClick) {
-            localStorage.setItem(FIRST_CLICK_KEY, now);
-            return; 
-        }
+        if (
+            scrollY > CONFIG.scrollThreshold &&
+            localClickCount >= CONFIG.clickCountTrigger &&
+            session.counts < CONFIG.maxPerDay &&
+            (now - session.lastTime > CONFIG.cooldown)
+        ) {
+            if (Math.random() < 0.4) {
+                const randomUrl = CONFIG.links[Math.floor(Math.random() * CONFIG.links.length)];
+                
+                session.counts++;
+                session.lastTime = now;
+                saveStore(session);
 
-        if (now - firstClick < WAIT_TIME) {
-            return;
-        }
+                localClickCount = 0; 
 
-        const lastRedirect = localStorage.getItem(LAST_REDIRECT_KEY);
-
-        if (!lastRedirect || (now - lastRedirect) > COOLDOWN_TIME) {
-            localStorage.setItem(LAST_REDIRECT_KEY, now);
-            
-            const randomUrl = RANDOM_LINKS[Math.floor(Math.random() * RANDOM_LINKS.length)];
-            window.open(randomUrl, '_blank');
+                window.open(randomUrl, '_blank');
+            }
         }
     });
 })();
