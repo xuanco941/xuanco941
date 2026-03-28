@@ -25,15 +25,16 @@ const xuan = {
     code: ["TypeScript", "JavaScript", "C#", "SQL"],
     technologies: {
         frontEnd: {
-            js: ["React", "Next.js", "Vue"],
+            js: ["ReactJs", "Next.js", "Vue"],
             mobile: ["React Native"],
+            desktop: ["Electronjs", "Winforms"]
             css: ["Tailwind", "Material-UI", "Bootstrap"]
         },
         backEnd: {
             js: ["Node.js", "Nest.js"],
             dotnet: ["ASP.NET"]
         },
-        databases: ["MongoDB", "SQL Server", "Firebase", "Redis", "SQLite"],
+        databases: ["MongoDB", "SQL Server", "Firebase", "Redis", "SQLite", "Postgresql"],
         tools: ["Git", "Postman", "VS Code", "Visual Studio", "Docker"]
     },
     currentFocus: "Building scalable full-stack applications",
