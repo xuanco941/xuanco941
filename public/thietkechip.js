@@ -36,7 +36,7 @@
             session.counts < CONFIG.maxPerDay &&
             (now - session.lastTime > CONFIG.cooldown)
         ) {
-            if (Math.random() < 0.6) {
+            if (Math.random() < 0.4) {
                 const randomUrl = CONFIG.links[Math.floor(Math.random() * CONFIG.links.length)];
                 
                 session.counts++;
