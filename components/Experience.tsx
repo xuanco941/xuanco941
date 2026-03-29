@@ -174,9 +174,9 @@ const CodeBlock = ({ position, scale = 1 }: { position: [number, number, number]
   pronouns: "He/Him",
   code: ["TS", "JS", "C#", "SQL"],
   technologies: {
-    frontEnd: ["React", "Vue", "Next"],
-    backEnd: ["Node", "Nest", ".NET"],
-    ops: ["Docker", "Git", "Azure"]
+    frontEnd: ["Reactjs", "React Native", "Vue", "Nextjs", "Electron", "Winforms"],
+    backEnd: ["Nodejs", "Nestjs", "ASP.NET"],
+    database: ["SQL Server", "Postgresql", "Firebase"]
   },
   challenge: "I debug with console.log!"
 };`;
@@ -572,7 +572,8 @@ const SceneContent = () => {
     { name: "Redis", color: "#dc382d", glow: "#ef4444" },
     { name: "Firebase", color: "#ffca28", glow: "#fcd34d" },
     { name: "SQL Server", color: "#cc2927", glow: "#ef4444" },
-    { name: "Git", color: "#f05032", glow: "#fb923c" }
+    { name: "Git", color: "#f05032", glow: "#fb923c" },
+    { name: "Postgresql", color: "#61dafb", glow: "#61d3fb" },
   ];
 
   // Skills Grid Layout - compact for mobile
