@@ -6,8 +6,8 @@
             'https://thietkechip.vn/danh-muc/tin-tuc-cong-nghe',
             'https://thietkechip.vn/danh-muc/ai-machine-learning'
         ],
-        maxPerDay: 2,           
-        scrollThreshold: 300,  
+        maxPerDay: 1,           
+        scrollThreshold: 400,  
         clickCountTrigger: 3,  
         cooldown: 4 * 60 * 60 * 1000, 
         storageKey: '_smart_interact_data'
