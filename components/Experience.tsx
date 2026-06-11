@@ -171,14 +171,14 @@ const CodeBlock = ({ position, scale = 1 }: { position: [number, number, number]
   });
 
   const codeString = `const xuan = {
-  pronouns: "He/Him",
+  vaiTro: "Lập trình viên Fullstack",
   code: ["TS", "JS", "C#", "SQL"],
-  technologies: {
-    frontEnd: ["Reactjs", "React Native", "Vue", "Nextjs", "Electron", "Winforms"],
-    backEnd: ["Nodejs", "Nestjs", "ASP.NET"],
-    database: ["SQL Server", "Postgresql", "Firebase"]
+  congNghe: {
+    frontend: ["React", "React Native", "Vue", "Next.js", "Electron"],
+    backend: ["Node.js", "NestJS", "ASP.NET"],
+    database: ["SQL Server", "PostgreSQL", "Firebase"]
   },
-  challenge: "I debug with console.log!"
+  mucTieu: "Xây dựng sản phẩm rõ ràng, dễ dùng và dễ mở rộng"
 };`;
 
   return (

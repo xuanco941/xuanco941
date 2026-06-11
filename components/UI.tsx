@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Mail, MousePointer2, Facebook, Instagram, ChevronDown } from 'lucide-react';
+import { Github, Mail, Facebook, Instagram, ChevronDown, FileText } from 'lucide-react';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 interface UIProps {
@@ -9,7 +9,9 @@ interface UIProps {
 
 const UI = ({ currentSection = 0 }: UIProps) => {
   const [localSection, setLocalSection] = useState(currentSection);
-  const { language, setLanguage, t } = useContext(LanguageContext);
+  const { t } = useContext(LanguageContext);
+  const basePath = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+  const cvPath = `${basePath}cv`;
 
   useEffect(() => {
     setLocalSection(currentSection);
@@ -152,23 +154,15 @@ const UI = ({ currentSection = 0 }: UIProps) => {
           transition={{ delay: 1 }}
           className="flex flex-col gap-4 items-start"
         >
-          {/* Language Switcher */}
-          <div className="flex gap-1 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/5 pointer-events-auto">
-            <button
-              onClick={() => setLanguage('vi')}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${language === 'vi' ? 'bg-cyan-400 text-black shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              VI
-            </button>
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 ${language === 'en' ? 'bg-cyan-400 text-black shadow-[0_0_10px_rgba(34,211,238,0.5)]' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              EN
-            </button>
-          </div>
+          <motion.a
+            href={cvPath}
+            className="inline-flex items-center gap-2 bg-cyan-400 text-black px-4 py-2 rounded-full text-xs font-bold shadow-[0_0_18px_rgba(34,211,238,0.35)] pointer-events-auto transition-all duration-300 hover:bg-white"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <FileText size={14} />
+            Xem CV online
+          </motion.a>
 
           {/* Scroll indicator - show only on first section */}
           <AnimatePresence>
