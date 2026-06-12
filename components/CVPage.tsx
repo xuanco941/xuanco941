@@ -31,7 +31,8 @@ const profile = {
 const stats = [
   ['4+', 'năm kinh nghiệm'],
   ['30+', 'dự án đã tham gia'],
-  ['Multi-domain', 'Toà án, sản xuất, kho vận, giáo dục, AI, v.v.'],
+  ['10+', 'lĩnh vực: toà án, sản xuất, bán hàng, AI...'],
+  ['100%', 'cam kết tiến độ và chất lượng sản phẩm'],
 ];
 
 const stackGroups = [
