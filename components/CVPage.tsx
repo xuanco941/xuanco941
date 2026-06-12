@@ -23,7 +23,7 @@ const profile = {
   location: 'Hà Nội',
   hometown: 'Ninh Bình',
   email: 'xuanco941@gmail.com',
-  phone: '0388**0006',
+  phone: '0388***006',
   github: 'https://github.com/xuanco941',
   current: 'Cục Công nghệ thông tin - Tòa án tối cao',
 };
@@ -31,8 +31,7 @@ const profile = {
 const stats = [
   ['4+', 'năm kinh nghiệm'],
   ['30+', 'dự án đã tham gia'],
-  ['10+', 'lĩnh vực: toà án, sản xuất, bán hàng, AI...'],
-  ['100%', 'cam kết tiến độ và chất lượng sản phẩm'],
+  ['10+', 'lĩnh vực triển khai']
 ];
 
 const stackGroups = [
@@ -110,9 +109,13 @@ function CVPage() {
               <div className="signal-line">
                 <span>Fullstack</span>
                 <span>/</span>
-                <span>Dữ liệu</span>
+                <span>Web</span>
                 <span>/</span>
-                <span>Tự động hóa AI</span>
+                <span>Mobile</span>
+                <span>/</span>
+                <span>Data</span>
+                <span>/</span>
+                <span>AI</span>
               </div>
               <h1>{profile.name}</h1>
               <p className="role">{profile.role}</p>
@@ -131,6 +134,7 @@ function CVPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="portrait-panel"
+              style={{minHeight: '100%'}}
             >
               <div className="portrait">
                 <img src={`${basePath}avt.png`} alt="Đỗ Văn Xuân" />
