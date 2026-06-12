@@ -31,7 +31,7 @@ const profile = {
 const stats = [
   ['4+', 'năm kinh nghiệm'],
   ['30+', 'dự án đã tham gia'],
-  ['AI + Data', 'tự động hóa, phát triển phần mềm nhanh'],
+  ['Multi-domain', 'Toà án, sản xuất, kho vận, giáo dục, AI, v.v.'],
 ];
 
 const stackGroups = [
