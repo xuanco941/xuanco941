@@ -23,7 +23,7 @@ const profile = {
   location: 'Hà Nội',
   hometown: 'Ninh Bình',
   email: 'xuanco941@gmail.com',
-  phone: '0388***006',
+  phone: '0388530006',
   github: 'https://github.com/xuanco941',
   current: 'Cục Công nghệ thông tin - Tòa án tối cao',
 };
