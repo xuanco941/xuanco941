@@ -38,10 +38,14 @@ const stackGroups = [
   ['Frontend', ['React', 'Next.js', 'Vue', 'React Native', 'Electron']],
   ['Backend', ['Node.js', 'NestJS', 'ASP.NET', 'C#', 'REST API', "Socket"]],
   ['Database & Data', ['Oracle Database', 'SQL Server', 'PostgreSQL', 'Redis', 'Firebase', 'Qdrant']],
+  ['AI Engineering', ['LLM Integration', 'Embedding', 'Semantic Chunking', 'RAG', 'Vector Search', 'Context Management']],
+  ['Agents & Tooling', ['AI Agent', 'Tool Calling', 'MCP', 'Agentic Workflow', 'Knowledge Base', 'Prompt Engineering']],
   ['Workflow & Security', ['Git', 'ERP/MES', 'Tự động hóa bằng AI', 'Thống kê dữ liệu', 'Kinh doanh', "Tools", "Ứng dụng di động"]],
 ] as const;
 
 const highlights = [
+  'Thiết kế hệ thống AI Agent có khả năng sử dụng tool, MCP và workflow để xử lý các tác vụ nghiệp vụ nhiều bước.',
+  'Xây dựng pipeline RAG từ ingestion, semantic chunking, embedding đến vector search và truy xuất tri thức theo ngữ cảnh.',
   'Phân tích yêu cầu, thiết kế database và triển khai module nghiệp vụ từ đầu đến cuối.',
   'Xử lý, tổng hợp và thống kê dữ liệu phục vụ báo cáo, quản trị và ra quyết định.',
   'Xây dựng các hệ thống có yêu cầu bảo mật, phân quyền và kiểm soát dữ liệu chặt chẽ.',
@@ -50,6 +54,7 @@ const highlights = [
 ];
 
 const projects = [
+  ['Nền tảng AI Agent & RAG', 'Xây dựng Agent tùy biến kết nối kho tri thức, embedding/vector search, MCP tooling và workflow AI để tự động hóa nghiệp vụ.', 'AI Engineering'],
   ['Quản lý án toàn trình (qlta.toaan.gov.vn)', 'Hệ thống theo dõi, quản lý quy trình xử lý án theo vòng đời nghiệp vụ, phục vụ tra cứu và điều hành.', 'Tòa án'],
   ['Thống kê dữ liệu', 'Tổng hợp, chuẩn hóa và trực quan hóa dữ liệu phục vụ báo cáo vận hành và quản trị.', 'Data'],
   ['Ứng dụng học tập, ôn thi', 'Nền tảng học tập và ôn luyện trực tuyến, tiêu biểu như congchuc.online, ThiPro.', 'EdTech'],
