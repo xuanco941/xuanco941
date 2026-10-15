@@ -1,24 +1,45 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import glsl from "vite-plugin-glsl";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, '.', '');
-  return {
-    server: {
-      port: 3000,
-      host: '0.0.0.0',
+export default defineConfig({
+  base: "/xuanco941/",
+  plugins: [
+    vue(),
+    glsl({
+      include: ["**/*.glsl", "**/*.vert", "**/*.frag"],
+      defaultExtension: "glsl",
+      warnDuplicatedImports: false,
+    }),
+  ],
+  server: {
+    port: 3000,
+    strictPort: true,
+    host: true,
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".ogg", ".wav", ".glsl", ".ktx2", ".vue"],
+  },
+  assetsInclude: ["**/*.svg", "**/*.gltf", "**/*.glb", "**/*.png", "**/*.jpg", "**/*.ktx2"],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "/src/assets/styles/mixins.scss";`,
+      },
     },
-    base: "/xuanco941",
-    plugins: [react()],
-    define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+  },
+  build: {
+    outDir: "./dist",
+    sourcemap: false,
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: false,
+        assetFileNames: "assets/[hash].[ext]",
+        entryFileNames: "chunks/[name]-[hash].js",
+        chunkFileNames: "chunks/[hash].js",
+      },
     },
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      }
-    }
-  };
+  },
 });
