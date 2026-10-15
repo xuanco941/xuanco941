@@ -1,4 +1,4 @@
-import { ref, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import { lenis } from "./useScroll";
 import { sizes } from "../utils/sizes";
 
@@ -31,17 +31,15 @@ export const useHeaderTheme = ({
     }
   };
 
-  watchEffect((onInvalidate) => {
-    if (lenis.value) {
-      lenis.value.on("scroll", handleScroll);
-    }
-
-    onInvalidate(() => {
-      if (lenis.value) {
-        lenis.value.off("scroll", handleScroll);
-      }
-    });
-  });
+  watch(
+    lenis,
+    (instance, _previous, onCleanup) => {
+      if (!instance) return;
+      instance.on("scroll", handleScroll);
+      onCleanup(() => instance.off("scroll", handleScroll));
+    },
+    { immediate: true },
+  );
 
   return {
     isDarkTheme,

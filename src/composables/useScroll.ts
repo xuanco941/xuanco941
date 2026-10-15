@@ -1,11 +1,13 @@
 import gsap from "gsap";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ref, onMounted, onUnmounted, watch } from "vue";
+import { ref, shallowRef, onMounted, onUnmounted, watch } from "vue";
 import { isTransitioning } from "./useProjectTransition";
 
-export const lenis = ref<Lenis | null>(null);
-export const projectLenis = ref<Lenis | null>(null);
+// Keep third-party instances out of Vue's deep reactive proxy: their event
+// subscriptions mutate internal state and can retrigger subscribing effects.
+export const lenis = shallowRef<Lenis | null>(null);
+export const projectLenis = shallowRef<Lenis | null>(null);
 export const velocity = ref(0);
 
 const handleScroll = () => {
