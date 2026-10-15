@@ -5,7 +5,7 @@ import About from "./About.vue";
 import Contact from "./Contact.vue";
 import Footer from "../../../components/Footer.vue";
 import { ref, onMounted, onUnmounted, watchEffect, computed, watch } from "vue";
-import { three, isThreeReady } from "../../../three";
+import { three } from "../../../three";
 import { animations } from "../../../animations";
 import HeaderHome from "../../../components/HeaderHome.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
@@ -100,7 +100,6 @@ onUnmounted(() => {
 watchEffect((onInvalidate) => {
   if (
     threeInitialized.value &&
-    isThreeReady.value &&
     !preloaderVisible.value
   ) {
     animations.init();
