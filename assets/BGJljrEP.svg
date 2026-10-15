@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a1b" />
+      <stop offset="50%" stop-color="#080e24" />
+      <stop offset="100%" stop-color="#0c1738" />
+    </linearGradient>
+    <radialGradient id="glow-cyan" cx="20%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#080e24" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-amber" cx="80%" cy="70%" r="60%">
+      <stop offset="0%" stop-color="#ff7b00" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#080e24" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#101d42" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0b1430" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="card-grad-active" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162758" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#0e1b3d" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Glowing filters -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="subtle-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1920" height="1080" fill="url(#bg)" />
+  <rect width="1920" height="1080" fill="url(#glow-cyan)" />
+  <rect width="1920" height="1080" fill="url(#glow-amber)" />
+
+  <!-- Subtle Cyber Grid -->
+  <g opacity="0.12" stroke="#38bdf8" stroke-width="1">
+    <line x1="0" y1="180" x2="1920" y2="180" />
+    <line x1="0" y1="360" x2="1920" y2="360" />
+    <line x1="0" y1="540" x2="1920" y2="540" />
+    <line x1="0" y1="720" x2="1920" y2="720" />
+    <line x1="0" y1="900" x2="1920" y2="900" />
+    <line x1="320" y1="0" x2="320" y2="1080" />
+    <line x1="640" y1="0" x2="640" y2="1080" />
+    <line x1="960" y1="0" x2="960" y2="1080" />
+    <line x1="1280" y1="0" x2="1280" y2="1080" />
+    <line x1="1600" y1="0" x2="1600" y2="1080" />
+  </g>
+
+  <!-- Header Section -->
+  <g transform="translate(100, 90)">
+    <rect x="-10" y="-10" width="8" height="64" rx="4" fill="#ff7b00" filter="url(#subtle-glow)" />
+    <text x="18" y="24" fill="#ffffff" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-weight="900" font-size="34" letter-spacing="1.5">MES SHOPFLOOR TELEMETRY & IOT ROBOTICS INTEGRATION</text>
+    <text x="18" y="56" fill="#38bdf8" font-family="'Space Grotesk', 'Segoe UI', monospace" font-weight="600" font-size="16" letter-spacing="2">REAL-TIME WEBSOCKETS TELEMETRY, OEE TRACKING & ESP32 VOICE-CONTROLLED AGV CARRIER</text>
+    <rect x="1560" y="8" width="160" height="36" rx="18" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="1640" y="32" fill="#e0f2fe" font-family="'Space Grotesk', monospace" font-weight="700" font-size="13" text-anchor="middle" letter-spacing="1">TECHNICAL SPEC</text>
+  </g>
+
+  <!-- Main Diagram Body -->
+  
+  <g stroke="#38bdf8" stroke-width="3" stroke-dasharray="8 6" opacity="0.7">
+    <path d="M 400 480 L 460 480" />
+    <path d="M 760 480 L 820 480" />
+    <path d="M 1120 480 L 1180 480" />
+    <path d="M 1480 480 L 1540 480" />
+  </g>
+
+  <!-- Node 1 -->
+  <g transform="translate(100, 260)">
+    <rect width="300" height="440" rx="20" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#subtle-glow)" />
+    <rect x="24" y="24" width="56" height="56" rx="14" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="52" y="60" fill="#38bdf8" font-size="28" text-anchor="middle">📋</text>
+    <text x="24" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20">01. WORK ORDER</text>
+    <text x="24" y="152" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-weight="600" font-size="13">LỆNH SẢN XUẤT</text>
+    <line x1="24" y1="175" x2="276" y2="175" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" />
+    <text x="24" y="210" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Lập kế hoạch theo chuyền may</text>
+    <text x="24" y="245" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Định mức nguyên vật liệu BOM</text>
+    <text x="24" y="280" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Điều độ phân bổ nhân công</text>
+    <text x="24" y="315" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Theo dõi tiến độ từng công đoạn</text>
+    <rect x="24" y="360" width="252" height="44" rx="10" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.3)" />
+    <text x="150" y="388" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-size="12" font-weight="700" text-anchor="middle">DISPATCH: AUTOMATIC</text>
+  </g>
+
+  <!-- Node 2 -->
+  <g transform="translate(460, 260)">
+    <rect width="300" height="440" rx="20" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#subtle-glow)" />
+    <rect x="24" y="24" width="56" height="56" rx="14" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="52" y="60" fill="#38bdf8" font-size="28" text-anchor="middle">📡</text>
+    <text x="24" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20">02. WEBSOCKETS</text>
+    <text x="24" y="152" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-weight="600" font-size="13">TELEMETRY THỜI GIAN THỰC</text>
+    <line x1="24" y1="175" x2="276" y2="175" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" />
+    <text x="24" y="210" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Luồng dữ liệu 2 chiều cực nhanh</text>
+    <text x="24" y="245" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Cập nhật trạng thái máy may</text>
+    <text x="24" y="280" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Báo cáo lỗi công đoạn ngay lập tức</text>
+    <text x="24" y="315" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Kiosk công nhân tại xưởng</text>
+    <rect x="24" y="360" width="252" height="44" rx="10" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.3)" />
+    <text x="150" y="388" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-size="12" font-weight="700" text-anchor="middle">LATENCY: &lt; 10MS</text>
+  </g>
+
+  <!-- Node 3 -->
+  <g transform="translate(820, 240)">
+    <rect width="300" height="480" rx="20" fill="url(#card-grad-active)" stroke="#ff7b00" stroke-width="2" filter="url(#neon-glow)" />
+    <rect x="24" y="24" width="56" height="56" rx="14" fill="rgba(255, 123, 0, 0.2)" stroke="#ff7b00" stroke-width="1.5" />
+    <text x="52" y="60" fill="#ff7b00" font-size="28" text-anchor="middle">🤖</text>
+    <text x="24" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20">03. ESP32 ROBOT</text>
+    <text x="24" y="152" fill="#ff7b00" font-family="'Space Grotesk', monospace" font-weight="700" font-size="13">ROBOT MINI GIỌNG NÓI</text>
+    <line x1="24" y1="175" x2="276" y2="175" stroke="rgba(255, 123, 0, 0.3)" stroke-width="1" />
+    <text x="24" y="215" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">• Vi điều khiển ESP32 Wi-Fi/BLE</text>
+    <text x="24" y="250" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">• Nhận diện giọng nói tiếng Việt</text>
+    <text x="24" y="285" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">• Vận chuyển vật tư giữa chuyền</text>
+    <text x="24" y="320" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">• Cảm biến siêu âm tránh vật cản</text>
+    <text x="24" y="355" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">• Báo cáo vị trí thời gian thực</text>
+    <rect x="24" y="395" width="252" height="50" rx="12" fill="rgba(255, 123, 0, 0.15)" stroke="#ff7b00" stroke-width="1" />
+    <text x="150" y="426" fill="#ff9838" font-family="'Space Grotesk', monospace" font-size="13" font-weight="800" text-anchor="middle">VOICE COMMAND: RECOGNIZED</text>
+  </g>
+
+  <!-- Node 4 -->
+  <g transform="translate(1180, 260)">
+    <rect width="300" height="440" rx="20" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#subtle-glow)" />
+    <rect x="24" y="24" width="56" height="56" rx="14" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="52" y="60" fill="#38bdf8" font-size="28" text-anchor="middle">📈</text>
+    <text x="24" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20">04. OEE ENGINE</text>
+    <text x="24" y="152" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-weight="600" font-size="13">HIỆU SUẤT THIẾT BỊ</text>
+    <line x1="24" y1="175" x2="276" y2="175" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" />
+    <text x="24" y="210" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Tính chỉ số OEE tự động</text>
+    <text x="24" y="245" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Tính Availability / Sẵn sàng</text>
+    <text x="24" y="280" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Tính Performance / Năng suất</text>
+    <text x="24" y="315" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Tính Quality / Tỉ lệ chuẩn</text>
+    <rect x="24" y="360" width="252" height="44" rx="10" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.3)" />
+    <text x="150" y="388" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-size="12" font-weight="700" text-anchor="middle">OEE TARGET: &gt; 85%</text>
+  </g>
+
+  <!-- Node 5 -->
+  <g transform="translate(1540, 260)">
+    <rect width="280" height="440" rx="20" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#subtle-glow)" />
+    <rect x="24" y="24" width="56" height="56" rx="14" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="52" y="60" fill="#38bdf8" font-size="28" text-anchor="middle">📊</text>
+    <text x="24" y="125" fill="#ffffff" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20">05. DASHBOARD</text>
+    <text x="24" y="152" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-weight="600" font-size="13">ĐIỀU HÀNH TỔNG THỂ</text>
+    <line x1="24" y1="175" x2="256" y2="175" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" />
+    <text x="24" y="210" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Giám sát toàn bộ xưởng may</text>
+    <text x="24" y="245" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Cảnh báo tắc nghẽn chuyền</text>
+    <text x="24" y="280" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Báo cáo sản lượng theo giờ</text>
+    <text x="24" y="315" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="600">• Xuất dữ liệu kế toán ERP</text>
+    <rect x="24" y="360" width="232" height="44" rx="10" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.3)" />
+    <text x="140" y="388" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-size="12" font-weight="700" text-anchor="middle">DOWNTIME: -35%</text>
+  </g>
+
+
+  <!-- Footer Branding -->
+  <g transform="translate(100, 1020)">
+    <text x="0" y="0" fill="#64748b" font-family="'Space Grotesk', monospace" font-size="14" letter-spacing="1">ARCHITECTURAL DESIGN &amp; ENGINEERING // ĐỖ VĂN XUÂN (XUANCO941)</text>
+    <text x="1720" y="0" fill="#38bdf8" font-family="'Space Grotesk', monospace" font-weight="700" font-size="14" text-anchor="end" letter-spacing="1.5">BLUE HOUR EDITION</text>
+  </g>
+</svg>
