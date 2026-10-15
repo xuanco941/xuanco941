@@ -1,120 +1,22 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Đỗ Văn Xuân - Fullstack & AI Engineer</title>
-    <meta
-      name="description"
-      content="Đỗ Văn Xuân - Lập trình viên Fullstack & AI Engineer. Xây dựng ứng dụng web/mobile, kiến trúc microservices và hệ thống AI Agent / RAG tự động hóa nghiệp vụ."
-    />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://xuanco941.github.io/xuanco941/" />
-
-    <meta property="og:title" content="Đỗ Văn Xuân - Fullstack & AI Engineer" />
-    <meta
-      property="og:description"
-      content="Lập trình viên Fullstack & AI Engineer. Trải nghiệm không gian 3D tương tác sống động, công nghệ hiện đại Three.js, Vue, WebGL."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://xuanco941.github.io/xuanco941/" />
-    <meta property="og:image" content="./meta/og-image.webp" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Đỗ Văn Xuân - Fullstack & AI Engineer" />
-    <meta
-      name="twitter:description"
-      content="Lập trình viên Fullstack & AI Engineer. Trải nghiệm không gian 3D tương tác sống động."
-    />
-    <meta name="twitter:image" content="./meta/twitter-image.webp" />
-
-    <link rel="preload" href="./fonts/urbanist-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/urbanist-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/urbanist-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/pro-font-windows-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/pro-font-windows-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700;1,900&family=Plus+Jakarta+Sans:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-
-    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <link rel="shortcut icon" href="./favicon.ico" />
-
-    <meta name="theme-color" content="#080e22" />
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Pages - HTML test</title>
     <style>
-      body.is-loading {
-        overflow: hidden;
-      }
-      .preloader {
-        position: fixed;
-        inset: 0;
-        z-index: 99999;
-        background-color: #080e22;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #f1f5f9;
-        font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-        user-select: none;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-      .preloader-hidden {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        visibility: hidden !important;
-      }
-      html.is-cv .preloader {
-        display: none !important;
-      }
+      body { margin: 0; padding: 48px 24px; background: #080e22; color: #f1f5f9; font: 18px/1.6 system-ui, sans-serif; }
+      main { max-width: 720px; margin: 0 auto; }
+      h1 { color: #38bdf8; }
+      code { color: #a7f3d0; }
     </style>
-    <script>
-      try {
-        if (window.location.pathname.indexOf('/cv') !== -1) {
-          document.documentElement.classList.add('is-cv');
-        }
-      } catch (e) {}
-    </script>
   </head>
-  <body class="is-loading">
-    <svg style="display: none" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path
-          id="logo-path"
-          d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42"
-        ></path>
-      </defs>
-    </svg>
-    <div id="app"></div>
-    <div class="preloader">
-      <div class="preloader-content">
-        <div class="preloader-badge">// KHỞI TẠO 3D SPACE</div>
-        <div class="preloader-icon-wrap">
-          <div class="preloader-glow"></div>
-          <div class="preloader-ring"></div>
-          <svg class="preloader-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg">
-            <mask id="preloader-mask">
-              <rect fill="black" height="61" width="61"></rect>
-              <rect fill="white" height="61" width="61" class="preloader-rect" style="transform: scaleY(0)"></rect>
-            </mask>
-            <use href="#logo-path" class="preloader-path" opacity="0.25"></use>
-            <use href="#logo-path" class="preloader-path preloader-path-active" mask="url(#preloader-mask)"></use>
-          </svg>
-        </div>
-        <div class="preloader-progress-box">
-          <div class="preloader-info-row">
-            <span class="preloader-system-tag">SYSTEM_LOAD</span>
-            <span class="preloader-percent">0%</span>
-          </div>
-          <div class="preloader-bar-bg">
-            <div class="preloader-bar-fill"></div>
-          </div>
-          <div class="preloader-status">Đang tải không gian 3D...</div>
-        </div>
-      </div>
-    </div>
-    <script type="module" src="./src/main.ts"></script>
+  <body>
+    <main>
+      <h1>GitHub Pages phản hồi thành công</h1>
+      <p>Đây là trang HTML tĩnh để kiểm tra kết nối.</p>
+      <p>Mã kiểm tra: <code>pages-html-test-20261015</code></p>
+      <p>Trang này không tải JavaScript, font, hình ảnh hoặc thư viện bên ngoài.</p>
+    </main>
   </body>
 </html>
