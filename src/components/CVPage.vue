@@ -33,62 +33,82 @@ const stackGroups = [
 ] as const;
 
 const highlights = [
-  "Thiết kế hệ thống AI Agent có khả năng sử dụng tool, MCP và workflow để xử lý các tác vụ nghiệp vụ nhiều bước.",
+  "Thiết kế hệ thống AI Agent dùng tool, MCP và workflow để xử lý tác vụ nghiệp vụ nhiều bước, kết nối xuyên suốt giữa DuskAI, DuskOffice và DuskFlow.",
   "Xây dựng pipeline RAG từ ingestion, semantic chunking, embedding đến vector search và truy xuất tri thức theo ngữ cảnh.",
+  "Làm chủ codebase mã nguồn mở quy mô lớn (monorepo TypeScript, Electron, Node.js), tùy biến thành sản phẩm riêng mà vẫn merge định kỳ bản cập nhật từ upstream.",
+  "Đưa sản phẩm từ code đến tay người dùng: đóng gói ứng dụng desktop cho Windows, macOS, Linux, CI/CD, tự động cập nhật và phát hành trên Microsoft Store.",
+  "Xây dựng hệ thống yêu cầu bảo mật, phân quyền và kiểm soát dữ liệu chặt chẽ; triển khai SSO/OAuth 2.0 với PKCE, LLM Gateway tập trung và quản lý API key theo người dùng.",
   "Phân tích yêu cầu, thiết kế database và triển khai module nghiệp vụ từ đầu đến cuối.",
   "Xử lý, tổng hợp và thống kê dữ liệu phục vụ báo cáo, quản trị và ra quyết định.",
-  "Xây dựng các hệ thống có yêu cầu bảo mật, phân quyền và kiểm soát dữ liệu chặt chẽ.",
-  "Tự động hóa quy trình làm việc bằng AI để giảm thao tác thủ công và tăng tốc xử lý nghiệp vụ.",
-  "Xây dựng phần mềm kinh doanh, quảng cáo, bán hàng, quản lý hay tool hỗ trợ vận hành cực nhanh và hiệu quả.",
+  "Tự động hóa quy trình bằng AI và xây dựng nhanh phần mềm kinh doanh, bán hàng, quản lý, tool vận hành có tính hoàn thiện cao.",
 ];
 
-const projects = [
-  [
-    "Nền tảng AI Agent & RAG (duskai.vn)",
-    "Xây dựng Agent tùy biến kết nối kho tri thức, embedding/vector search, MCP tooling và workflow AI để tự động hóa nghiệp vụ.",
-    "AI Engineering",
-  ],
-  [
-    "Hệ thống phần mềm ngành Tòa án",
-    "Hệ thống theo dõi, quản lý quy trình xử lý án theo vòng đời nghiệp vụ toàn trình, phục vụ tra cứu và điều hành cho các cấp Tòa án nhân dân.",
-    "Tòa án",
-  ],
-  [
-    "Thống kê dữ liệu",
-    "Tổng hợp, chuẩn hóa và trực quan hóa dữ liệu phục vụ báo cáo vận hành và quản trị.",
-    "Data",
-  ],
-  [
-    "Ứng dụng học tập, ôn thi",
-    "Nền tảng học tập và ôn luyện trực tuyến, tiêu biểu như congchuc.online, ThiPro.",
-    "EdTech",
-  ],
-  [
-    "Robot mini điều tiết công nghiệp bằng giọng nói (ESP32)",
-    "Ứng dụng robot thông minh hỗ trợ điều tiết và quản lý quy trình sản xuất.",
-    "Tự động hóa",
-  ],
-  [
-    "ERP & MES System",
-    "Hệ thống điều hành sản xuất, hoạch định nguồn lực, theo dõi tiến độ và tích hợp robot.",
-    "Sản xuất",
-  ],
-  [
-    "Warehouse Management",
-    "Quản lý tồn kho, nhập xuất, truy vết hàng hóa cho ngành may mặc và dệt may.",
-    "Kho vận",
-  ],
-  [
-    "Smart Document Management",
-    "Quản lý tài liệu trường học, tìm kiếm nhanh và tích hợp các tính năng AI hỗ trợ xử lý.",
-    "AI Docs",
-  ],
-  [
-    "Industrial Machine IoT",
-    "Quản lý thiết bị sản xuất, theo dõi trạng thái máy và kết nối PLC trong nhà máy.",
-    "IoT",
-  ],
-] as const;
+type Project = {
+  name: string;
+  detail: string;
+  tag: string;
+  link?: { href: string; label: string };
+};
+
+const projects: Project[] = [
+  {
+    name: "Nền tảng AI Agent & RAG (duskai.vn)",
+    detail:
+      "Xây dựng Agent tùy biến kết nối kho tri thức, embedding/vector search, MCP tooling và workflow AI để tự động hóa nghiệp vụ. Cung cấp tài khoản và LLM Gateway dùng chung cho cả hệ sinh thái.",
+    tag: "AI Engineering",
+    link: { href: "https://duskai.vn", label: "duskai.vn" },
+  },
+  {
+    name: "DuskOffice - Ứng dụng văn phòng AI trên desktop",
+    detail:
+      "Bộ Docs, Sheets, Slides, PDF, Markdown, HTML có trợ lý AI ngay trong tài liệu, lưu trên máy theo chuẩn Office. Phát triển từ mã nguồn mở GenOffice: tích hợp đăng nhập DuskAI (Google OAuth + PKCE), skill soạn văn bản hành chính theo Nghị định 30, CI/CD 7 bản cài và phát hành trên Microsoft Store.",
+    tag: "Desktop AI",
+    link: { href: "https://duskai.vn/home/duskoffice", label: "duskai.vn/home/duskoffice" },
+  },
+  {
+    name: "DuskFlow - Tự động hóa quy trình với AI",
+    detail:
+      "Workflow kéo thả kết nối hàng trăm ứng dụng, có bước AI và bước phê duyệt. Phát triển từ Activepieces: SSO với DuskAI, chi phí AI tính theo tài khoản, MCP để trợ lý DuskAI tạo và gọi flow, sandbox cách ly người dùng, Việt hóa giao diện, backup tự động lên Google Drive.",
+    tag: "Automation",
+    link: { href: "https://duskai.vn/home/duskflow", label: "duskai.vn/home/duskflow" },
+  },
+  {
+    name: "Hệ thống phần mềm ngành Tòa án",
+    detail:
+      "Hệ thống theo dõi, quản lý quy trình xử lý án theo vòng đời nghiệp vụ toàn trình, phục vụ tra cứu và điều hành cho các cấp Tòa án nhân dân.",
+    tag: "Tòa án",
+  },
+  {
+    name: "Ứng dụng học tập, ôn thi",
+    detail: "Nền tảng học tập và ôn luyện trực tuyến, tiêu biểu như congchuc.online, ThiPro.",
+    tag: "EdTech",
+  },
+  {
+    name: "Robot mini điều tiết công nghiệp bằng giọng nói (ESP32)",
+    detail: "Ứng dụng robot thông minh hỗ trợ điều tiết và quản lý quy trình sản xuất.",
+    tag: "Tự động hóa",
+  },
+  {
+    name: "ERP & MES System",
+    detail: "Hệ thống điều hành sản xuất, hoạch định nguồn lực, theo dõi tiến độ và tích hợp robot.",
+    tag: "Sản xuất",
+  },
+  {
+    name: "Warehouse Management",
+    detail: "Quản lý tồn kho, nhập xuất, truy vết hàng hóa cho ngành may mặc và dệt may.",
+    tag: "Kho vận",
+  },
+  {
+    name: "Smart Document Management",
+    detail: "Quản lý tài liệu trường học, tìm kiếm nhanh và tích hợp các tính năng AI hỗ trợ xử lý.",
+    tag: "AI Docs",
+  },
+  {
+    name: "Industrial Machine IoT",
+    detail: "Quản lý thiết bị sản xuất, theo dõi trạng thái máy và kết nối PLC trong nhà máy.",
+    tag: "IoT",
+  },
+];
 
 const handleBack = () => {
   router.push("/");
@@ -166,13 +186,13 @@ const handlePrint = () => {
                   <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
-                <span>{{ profile.email }}</span>
+                <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
               </div>
               <div class="info-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
-                <span>{{ profile.phone }}</span>
+                <a :href="`tel:${profile.phone}`">{{ profile.phone }}</a>
               </div>
             </div>
           </div>
@@ -252,12 +272,12 @@ const handlePrint = () => {
                   </svg>
                   github.com/xuanco941
                 </a>
-                <span>
+                <a :href="`tel:${profile.phone}`">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
                   {{ profile.phone }}
-                </span>
+                </a>
               </div>
             </section>
 
@@ -312,12 +332,20 @@ const handlePrint = () => {
                 <h2>Dự án tiêu biểu</h2>
               </div>
               <div class="project-grid">
-                <article v-for="[name, detail, tag] in projects" :key="name" class="project-card">
+                <article v-for="project in projects" :key="project.name" class="project-card">
                   <div class="project-head">
-                    <h3>{{ name }}</h3>
-                    <span>{{ tag }}</span>
+                    <h3>{{ project.name }}</h3>
+                    <span>{{ project.tag }}</span>
                   </div>
-                  <p>{{ detail }}</p>
+                  <p>{{ project.detail }}</p>
+                  <a v-if="project.link" :href="project.link.href" target="_blank" rel="noreferrer" class="project-link">
+                    {{ project.link.label }}
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 3h6v6"></path>
+                      <path d="M10 14 21 3"></path>
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    </svg>
+                  </a>
                 </article>
               </div>
             </section>
@@ -594,6 +622,16 @@ const handlePrint = () => {
   padding: 8px 10px;
 }
 
+.info-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.info-item a:hover {
+  color: #0f766e;
+  text-decoration: underline;
+}
+
 .info-item svg {
   flex: 0 0 auto;
   margin-top: 2px;
@@ -855,6 +893,21 @@ const handlePrint = () => {
 .project-card p {
   color: #64748b;
   font-size: 13px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  text-decoration: underline;
 }
 
 .cta-panel {
